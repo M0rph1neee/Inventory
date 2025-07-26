@@ -27,18 +27,12 @@ Route::post('/logout', function () {
 Route::middleware(['auth', 'role:owner,operator,admin'])->group(function () {
     Route::get('/inventory', [InventoryController::class, 'index'])->name('inventory.index');
 
-    // Owner Routes
-    Route::middleware('role:owner')->group(function () {
-        Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
-        Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
-        Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
-        Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');
-        Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('inventory.destroy');
-    });
+    // Create Routes
+    Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
+    Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
 
-    // Operator Routes
-    Route::middleware('role:operator')->group(function () {
-        Route::get('/inventory/create', [InventoryController::class, 'create'])->name('inventory.create');
-        Route::post('/inventory', [InventoryController::class, 'store'])->name('inventory.store');
-    });
+    // Edit & Delete Routes
+    Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('inventory.edit');
+    Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');
+    Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('inventory.destroy');
 });
