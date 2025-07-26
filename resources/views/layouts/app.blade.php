@@ -12,15 +12,13 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body style="background: #360433; color: white; padding: 40px 0;">
-    <div class="container">
+    <main class="container py-4">
         @yield('content')
-    </div>
+    </main>
 
     <!-- Footer -->
-    <footer class="text-center text-white-50 small" style="position: absolute; bottom: 10px; width: 100%;">
-        <div class="container">
-            &copy; {{ date('Y') }} Inventory Management. All rights reserved. Created by <a href="https://github.com/M0rph1neee">strdvarius___   </a>.
-        </div>
+    <footer>
+        &copy; {{ date('Y') }} Inventory Management. All rights reserved. Created by <a href="https://github.com/M0rph1neee">strdvarius___</a>.
     </footer>
 
     <!-- Scripts -->

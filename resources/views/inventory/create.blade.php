@@ -34,6 +34,7 @@
             <div class="mb-3">
                 <label for="type" class="form-label">Type</label>
                 <select name="type" id="type" class="form-select" required>
+                    <option value="">--- Select Type ---</option>
                     @php
                         $typeOptions = ['Armor', 'Axe', 'Bow', 'Cape', 'Class', 'Dagger', 'Floor Item', 'Gauntlet', 'Gun', 'Helm', 'House', 'Item', 'Mace', 'Misc', 'Necklace', 'Pet', 'Polearm', 'Quest Item', 'Resource', 'Staff', 'Sword', 'Wall Item', 'Whip'];
                     @endphp
@@ -46,6 +47,7 @@
             <div class="mb-3">
                 <label for="location" class="form-label">Where</label>
                 <select name="location" id="location" class="form-select" required>
+                    <option value="">--- Select Location ---</option>
                     @php
                         $locationOptions = ['Bank', 'Inventory'];
                     @endphp
@@ -58,6 +60,7 @@
             <div class="mb-3">
                 <label for="buy_method" class="form-label">Buy</label>
                 <select name="buy_method" id="buy_method" class="form-select" required>
+                    <option value="">--- Select Buy ---</option>
                     @php
                         $buyOptions = ['AC', 'Gold'];
                     @endphp
@@ -70,6 +73,7 @@
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
                 <select name="category" id="category" class="form-select" required>
+                    <option value="">--- Select Category ---</option>
                     @php
                         $categoryOptions = ['Free', 'Member'];
                     @endphp
