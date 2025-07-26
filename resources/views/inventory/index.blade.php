@@ -29,9 +29,6 @@
 
     {{-- Filter Dropdown --}}
     <form method="GET" action="{{ route('inventory.index') }}" class="row g-2 mb-4">
-        <div class="col-md-3">
-            <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Search Item Name">
-        </div>
         <div class="col-md-2">
             <select name="type" class="form-select">
                 <option value="">Type</option>

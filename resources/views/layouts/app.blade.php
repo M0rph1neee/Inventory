@@ -19,7 +19,7 @@
     <!-- Footer -->
     <footer class="text-center text-white-50 small" style="position: absolute; bottom: 10px; width: 100%;">
         <div class="container">
-            &copy; {{ date('Y') }} Inventory Management. All rights reserved. Created by strdvarius___.
+            &copy; {{ date('Y') }} Inventory Management. All rights reserved. Created by <a href="https://github.com/M0rph1neee">strdvarius___   </a>.
         </div>
     </footer>
 
