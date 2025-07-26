@@ -1,0 +1,30 @@
+body {
+    background-color: #360433;
+    color: white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.btn-purple {
+    background-color: #6c0d7a;
+    color: white;
+}
+
+.btn-purple:hover {
+    background-color: #580a63;
+}
+
+.form-control,
+.form-select {
+    background-color: #f0e6d2;
+    color: black;
+}
+
+table.dataTable {
+    background-color: #f0e6d2;
+    color: black;
+}
+
+label {
+    margin-bottom: 0.3rem;
+}
