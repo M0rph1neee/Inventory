@@ -6,28 +6,30 @@
     <div class="d-flex justify-content-between align-items-start mb-4">
         <h2>Inventory</h2>
 
-        {{-- Logout Button --}}
-        <div class="d-flex flex-column align-items-end gap-2">
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
-        </div>
-
         {{-- Sidebar Menu --}}
         <div class="row">
-            @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')
-                <button class="btn btn-outline-light w-100 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
-                    ☰ Menu
-                </button>
-                <div class="collapse" id="sidebarMenu">
-                    <div class="bg-dark p-4 rounded text-white">
-                        {{-- <h5 class="mb-3">☰ Menu</h5> --}}
+            <button class="btn btn-outline-light w-100 mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                ☰ Menu
+            </button>
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+                <div class="offcanvas-header">
+                    {{-- <h5 class="offcanvas-title" id="offcanvasMenuLabel">☰ Menu</h5> --}}
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
 
-                        @if (Auth::check())
+                <div class="offcanvas-body">
+                    @if (Auth::check())
+
+                        <div class="d-grid gap-2">
+
+                            {{-- Add Button --}}
+                            @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')  
+                                <a href="{{ route('inventory.create') }}" class="btn btn-purple w-100">+ Add Item</a>
+                            @endif
+                            
                             {{-- Export Button --}}
                             @if (Auth::user()->role === 'owner')
-                                <a href="{{ route('inventory.export') }}" class="btn btn-success mb-3">
+                                <a href="{{ route('inventory.export') }}" class="btn btn-success w-100">
                                     <i class="bi bi-download"></i>Export to Excel
                                 </a>
                             @endif
@@ -36,22 +38,22 @@
                             @if (Auth::user()->role === 'owner')
                                 <form action="{{ route('inventory.import') }}" method="POST" enctype="multipart/form-data" class="d-flex mb-3">
                                     @csrf
-                                    <input type="file" name="file" class="form-control form-control-sm mb-2" style="max-width: 180px;" required>
-                                    <button type="submit" class="btn btn-primary">
+                                    <input type="file" name="file" class="form-control form-control-sm" style="max-width: 180px;" required>
+                                    <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="bi bi-upload"></i>Import Excel
                                     </button>
                                 </form>
+                            @endif
 
-                            @endif
-                            
-                            {{-- Add Button --}}
-                            @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')  
-                                <a href="{{ route('inventory.create') }}" class="btn btn-purple">+ Add Item</a>
-                            @endif
-                        @endif
-                    </div>
+                            {{-- Logout Button --}}
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger w-100">Logout</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
-            @endif
+            </div>
         </div>
         
     </div>
