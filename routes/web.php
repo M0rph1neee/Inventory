@@ -5,6 +5,10 @@ use App\Http\Controllers\InventoryController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\CheckRole;
+use App\Exports\InventoryExport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\InventoryImport;
+use Illuminate\Http\Request;
 
 // Redirect to inventory if open root
 Route::get('/', function () {
@@ -36,3 +40,19 @@ Route::middleware(['auth', 'role:owner,operator,admin'])->group(function () {
     Route::put('/inventory/{id}', [InventoryController::class, 'update'])->name('inventory.update');
     Route::delete('/inventory/{id}', [InventoryController::class, 'destroy'])->name('inventory.destroy');
 });
+
+// Export Route Handler
+Route::get('/inventory/export', function () {
+    return Excel::download(new InventoryExport, 'inventory.xlsx');
+})->name('inventory.export')->middleware(['auth', 'role:owner']);
+
+// Import Route Handler
+Route::post('/inventory/import', function (Request $request) {
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls,csv'
+    ]);
+
+    Excel::import(new InventoryImport, $request->file('file'));
+
+    return redirect()->back()->with('success', 'Import Successful!');
+})->name('inventory.import')->middleware(['auth', 'role:owner']);

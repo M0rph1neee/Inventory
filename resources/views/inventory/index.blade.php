@@ -14,10 +14,46 @@
             </form>
         </div>
 
-        {{-- Add Button --}}
-        @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')  
-            <a href="{{ route('inventory.create') }}" class="btn btn-purple">+ Add Item</a>
-        @endif
+        {{-- Sidebar Menu --}}
+        <div class="row">
+            @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')
+                <button class="btn btn-outline-light w-100 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-expanded="false" aria-controls="sidebarMenu">
+                    ☰ Menu
+                </button>
+                <div class="collapse" id="sidebarMenu">
+                    <div class="bg-dark p-4 rounded text-white">
+                        {{-- <h5 class="mb-3">☰ Menu</h5> --}}
+
+                        @if (Auth::check())
+                            {{-- Export Button --}}
+                            @if (Auth::user()->role === 'owner')
+                                <a href="{{ route('inventory.export') }}" class="btn btn-success mb-3">
+                                    <i class="bi bi-download"></i>Export to Excel
+                                </a>
+                            @endif
+                            
+                            {{-- Import Button --}}
+                            @if (Auth::user()->role === 'owner')
+                                <form action="{{ route('inventory.import') }}" method="POST" enctype="multipart/form-data" class="d-flex mb-3">
+                                    @csrf
+                                    <input type="file" name="file" class="form-control form-control-sm mb-2" style="max-width: 180px;" required>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-upload"></i>Import Excel
+                                    </button>
+                                </form>
+
+                            @endif
+                            
+                            {{-- Add Button --}}
+                            @if (Auth::user()->role === 'owner' || Auth::user()->role === 'operator')  
+                                <a href="{{ route('inventory.create') }}" class="btn btn-purple">+ Add Item</a>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            @endif
+        </div>
+        
     </div>
 
     @if (session('success'))
