@@ -40,7 +40,7 @@
                                     @csrf
                                     <input type="file" name="file" class="form-control form-control-sm" style="max-width: 180px;" required>
                                     <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="bi bi-upload"></i>Import Excel
+                                        <i class="bi bi-upload"></i>Import
                                     </button>
                                 </form>
                             @endif
